@@ -1,0 +1,17 @@
+:host {
+  flex: 1;
+  display: flex;
+
+  .add-task-container {
+    flex-direction: column;
+    flex: 1;
+    .form-container {
+      justify-content: center;
+
+      .form-group {
+        flex-direction: column;
+      }
+    }
+  }
+}
+

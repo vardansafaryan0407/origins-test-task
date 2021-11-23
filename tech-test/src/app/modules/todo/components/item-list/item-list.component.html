@@ -1,0 +1,55 @@
+<div class="tasks-grid-container container">
+  <h1 class="title flex justify-content-center">
+    Tasks
+  </h1>
+  <div class="create-button-container flex-row flex justify-content-between">
+    <div class="search-field-container">
+      <label>
+        Filter by property
+        <input type="text" class="flex" #tasksSearchField/>
+      </label>
+    </div>
+    <div class="button-container">
+      <button class="btn btn-primary task-create-button" [routerLink]="['create']">Create Task</button>
+    </div>
+  </div>
+  <div class="flex items-filter"></div>
+  <div class="table-container mt-5">
+    <mat-table [dataSource]="tasks" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="label">
+        <mat-header-cell *matHeaderCellDef> Label</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.label}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="done">
+        <mat-header-cell *matHeaderCellDef> Done</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span *ngIf="element.done; else actionButton">{{element.done}}</span>
+          <ng-template #actionButton>
+            <button class="btn btn-secondary" (click)="onTaskDone(element)">Done</button>
+          </ng-template>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="btn btn-secondary" (click)="onEditTask(element.id)">Edit</button>
+          <button class="btn btn-secondary" (click)="onViewTask(element.id)">View</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-header-row *matRowDef="let row; columns: displayedColumns;"></mat-header-row>
+    </mat-table>
+  </div>
+</div>

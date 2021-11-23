@@ -1,0 +1,26 @@
+<div class="task-container container flex p-5">
+  <h1 class="title flex justify-content-center">
+    Task {{task.id}}
+  </h1>
+  <div class="task-properties-container flex">
+    <div class="task-property flex mt-3">
+      <div class="property-name flex">Category:</div>
+      <div class="property-value flex">{{task.category}}</div>
+    </div>
+    <div class="task-property flex mt-3">
+      <div class="property-name flex">Label:</div>
+      <div class="property-value flex">{{task.label}}</div>
+    </div>
+    <div class="task-property flex mt-3">
+      <div class="property-name flex">Description:</div>
+      <div class="property-value flex">{{task.description}}</div>
+    </div>
+    <div class="task-property flex mt-3">
+      <div class="property-name flex">Done:</div>
+      <div class="property-value flex" *ngIf="task.done; else booleanTemplate">{{task.done}}</div>
+      <ng-template #booleanTemplate>
+        <div class="property-value flex">Done</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
